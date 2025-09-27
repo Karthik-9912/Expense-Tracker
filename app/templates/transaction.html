@@ -1,11 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
 </head>
 <body>
+    <section class="transaction-sec">
     <h1>Transaction Page</h1>
+    <button id="transactionBtn">Add Spent</button>
+
+    <div class="spent-sec">
+        {{data.cash}}
+    </div>
+    </section>
+
+    <script src="{% static 'app/js/transaction.js' %}"></script>
 </body>
 </html>
