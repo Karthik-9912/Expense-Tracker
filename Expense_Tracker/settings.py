@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user',
     'app',
 ]
 
@@ -76,7 +77,7 @@ WSGI_APPLICATION = 'Expense_Tracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'Expense-Tracker',
+        'NAME':'expensetracker',
         'USER':'postgres',
         'PASSWORD':'root',
         'PORT':5432,
