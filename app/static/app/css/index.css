@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Opne Sans",sans-serif;
+}
+nav{
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    li{
+        list-style: none;
+        margin: 0 10px;
+        width: 120px;
+        height: 40px;
+        align-content: center;
+        text-align: center;
+        a{
+            padding: 10px 20px;
+            border: 2px solid;
+            text-decoration: none;
+            color: black;
+        }
+    }
+}
+
+nav ul li:hover{
+    cursor: pointer;
+}
+
+main{
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.wallet{
+    border: 2px solid;
+    padding: 20px 0;
+}
+.wallet-sec{
+    border: 2px solid;
+    display: flex;
+    gap: 30px;
+    height: 170px;
+}
+.wallet-info{
+    display: flex;
+    border: 2px solid;
+    cursor: pointer;
+}
+
+.overview{
+    border: 2px solid;
+    padding: 20px 0;
+}
+.overview-info{
+    display: flex;
+    gap: 20px;
+}
