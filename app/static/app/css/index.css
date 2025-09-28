@@ -65,3 +65,19 @@ main{
     display: flex;
     gap: 20px;
 }
+
+.transaction-sec{
+    width: 1000px;
+    margin: 0 auto;
+}
+.spent-sec{
+    visibility: hidden;
+    border: 2px solid;
+    height: 100px;
+}
+
+.visible{
+    visibility: visible;
+    border: 2px solid;
+    height: 100px;
+}
