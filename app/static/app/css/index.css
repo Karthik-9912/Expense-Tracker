@@ -1,20 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+:root{
+    --background-color: #e9d5ff;
+    --color: #3b0764;
+    --box-shadow: #94a3b8;
+}
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Opne Sans",sans-serif;
 }
+body{
+    height: 100vh;
+    background-image: linear-gradient(to bottom,#f8fafc,#f3e8ff,#f3e8ff,#f8fafc);
+}
 nav{
-    height: 70px;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
+    
 }
 nav ul{
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 420px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #ecfeff;
+    box-shadow: 3px 3px 10px var(--box-shadow);
     li{
         list-style: none;
         margin: 0 10px;
@@ -22,17 +38,42 @@ nav ul{
         height: 40px;
         align-content: center;
         text-align: center;
+         border-radius: 30px;
         a{
-            padding: 10px 20px;
-            border: 2px solid;
             text-decoration: none;
-            color: black;
+            color: var(--color);
+            border-radius: 30px;
+            font-size: 15px;
         }
     }
 }
 
+nav ul li:first-child>a{
+    padding: 10px 18px;
+}
+nav ul li:nth-child(2)>a{
+    padding: 10px 38px;
+}
+nav ul li:nth-child(3)>a{
+    padding: 10px 28px;
+}
+
+nav ul li a:hover{
+    background-color:#e9d5ff;
+}
+
 nav ul li:hover{
     cursor: pointer;
+}
+
+nav #profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+nav #profile>img{
+    border-radius: 50%;
 }
 
 main{
@@ -42,28 +83,112 @@ main{
 }
 
 .wallet{
-    border: 2px solid;
-    padding: 20px 0;
+    padding: 10px 0;
+    h2{
+        opacity: 0.8;
+    }
 }
 .wallet-sec{
-    border: 2px solid;
     display: flex;
-    gap: 30px;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
     height: 170px;
+    
 }
 .wallet-info{
     display: flex;
-    border: 2px solid;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    width: 250px;
+    padding: 15px;
+    background-color: var(--background-color);
     cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0.2px 0.2px 2px 0.2px var(--box-shadow);
+}
+.wallet-info:hover{
+    transition: all 0.2s ease-in;
+    box-shadow: 2px 2px 8px var(--box-shadow);
+}
+.wallet-logo>.material-symbols-outlined{
+    font-size: 32px;
+    color: brown;
+}
+.my-wallet{
+    padding-right: 10px;
+    h3{
+        opacity: 0.8;
+        color: var(--color);
+    }
+    p{
+        font-size: 14px;
+        line-height: 1.5;
+        opacity: 0.6;
+    }
+}
+.wallet-logo,.my-wallet{
+    height: 90px;
+    align-content: center;
+}
+.new-wallet{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+.add-new,.connect-new{
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0.2px 0.2px 2px 0.2px var(--box-shadow);
+    background-color: var(--background-color);
+    width: 350px;
+    height: 52px;
+    text-align: center;
+    align-content: center;
+    font-weight: 550;
+    opacity: 0.8;
+    color: var(--color);
+}
+.add-new:hover,.connect-new:hover{
+    transition: all 0.2s ease-in;
+    box-shadow: 2px 2px 8px var(--box-shadow);
 }
 
 .overview{
-    border: 2px solid;
     padding: 20px 0;
+    h2{
+        opacity: 0.8;
+    }
 }
 .overview-info{
     display: flex;
     gap: 20px;
+}
+.overview-info .items{
+    height: 100px;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0.2px 0.2px 2px 0.2px var(--box-shadow);
+    overflow: hidden;
+
+    h4{
+        font-size: 18px;
+        color: var(--color);
+        opacity: 0.8;
+    }
+    p{
+        padding-left: 2px;
+    }
 }
 
 .transaction-sec{
