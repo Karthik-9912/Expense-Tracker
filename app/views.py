@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Account,Income,Expense
+from decimal import Decimal
 
 # Create your views here.
 def index(request):
@@ -18,8 +19,6 @@ def budget(request):
 
 def transaction(request):
     data=Account.objects.first()
-    data1=None
-    data2=None
     if request.method=="POST":
         amt=request.POST.get('amt')
         exp=request.POST.get('exp')
@@ -27,20 +26,20 @@ def transaction(request):
         date=request.POST.get('date')
         desc=request.POST.get('desc')
         if data and amt:
-            amt=int(amt)
+            amt=Decimal(amt)
 
             if inc:
                 data.cash+=amt
                 data.save()
                 Income.objects.create(
-                    income=inc,date=date,note=desc,amount=amt
+                    income_type=inc,date=date,note=desc,amount=amt
                 )
                 data1.save()
             if exp:
                 data.cash-=amt
                 data.save()
                 Expense.objects.create(
-                    expense=exp,date=date,note=desc,amount=amt
+                    expense_type=exp,date=date,note=desc,amount=amt
                 )
                 data2.save()
     data1=Income.objects.all()
