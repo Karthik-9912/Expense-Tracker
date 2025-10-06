@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-    {% load static %}
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'app/css/index.css' %}" />
   </head>
   <body>
     <!-- header -->
     <header>
       <nav>
-        <div id="logo">logo</div>
+        <div id="logo">Expense logo</div>
         <div class="elements">
           <ul>
             <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
@@ -19,48 +23,66 @@
             <li><a href="{% url 'budget' %}">Budgets</a></li>
           </ul>
         </div>
-        <div id="profile">Profile Name</div>
+
+        <div id="profile">
+          <img
+            src="{% static 'images/karthik-ai.jpg' %}"
+            alt="profile-img"
+            height="40px"
+          />
+          <h5>Profile Name</h5>
+        </div>
       </nav>
     </header>
     <!-- main -->
-     <main>
-        <div class="wallet">
-            <h2>Wallets</h2>
+    <main>
+      <div class="wallet">
+        <h2>Wallets</h2>
+      </div>
+      <div class="wallet-sec">
+        <div class="wallet-info">
+          <div class="wallet-logo">
+            <span class="material-symbols-outlined">
+              account_balance_wallet
+            </span>
+          </div>
+          <div class="my-wallet">
+            <h3>My Wallet</h3>
+            <p>Cash</p>
+            <div>{{data.cash}} INR</div>
+          </div>
         </div>
-        <div class="wallet-sec"> 
-            <div class="wallet-info">
-                <div class="wallet-logo">wallet logo</div>
-                <div class="my-wallet">
-                <h3>My Wallet</h3>
-                <p>Cash</p>
-                <p>{{data.cash}} INR</p>
-                </div>
-            </div>
-            <div class="new-wallet">
-                <div>
-                    Add New Wallet
-                </div>
-                <div>
-                    Connect Bank Account
-                </div>
-            </div>
-            
+        <div class="new-wallet">
+          <div class="add-new">Add New Wallet</div>
+          <div class="connect-new">Connect Bank Account</div>
         </div>
-        <div class="overview">
-            <h2>Overview</h2>
+      </div>
+      <div class="overview">
+        <h2>Overview</h2>
+      </div>
+      <div class="overview-info">
+        <div class="items">
+          <h4>Total Balance</h4>
+          <p>0.00 INR</p>
         </div>
-        <div class="overview-info">
-            <div><h2>Total Balance</h2>
-        <p>0.00 INR</p></div>
-        <div><h2>Total Period Change</h2><p>0.00 INR</p></div>
-        <div><h2>Total Period Expenses</h2><p>0.00 INR</p></div>
-        <div><h2>Total Period Income</h2><p>0.00 INR</p></div>
+        <div class="items">
+          <h4>Total Period Change</h4>
+          <p>0.00 INR</p>
         </div>
-     </main>
+        <div class="items">
+          <h4>Total Period Expenses</h4>
+          <p>0.00 INR</p>
+        </div>
+        <div class="items">
+          <h4>Total Period Income</h4>
+          <p>0.00 INR</p>
+        </div>
+      </div>
+    </main>
 
-     <script>
-        const transactionUrl="{% url 'transaction' %}";
-     </script>
-     <script src="{% static 'app/js/script.js' %}"></script>
+    <script>
+      const transactionUrl = "{% url 'transaction' %}";
+    </script>
+    <script src="{% static 'app/js/script.js' %}"></script>
   </body>
 </html>
