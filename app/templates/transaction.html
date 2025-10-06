@@ -10,33 +10,36 @@
 </head>
 <body>
     <section class="transaction-sec">
-    <h1>Transaction Page</h1>
-    <button id="transactionBtn">Add Spent</button>
+    
+    <button id="transactionBtn">Add Transaction</button>
 
     <div class="spent-sec">
         <form action="" method="post">
             {% csrf_token %}
             <div>
-                <label for="">Expense</label>
-                <input type="text" name="exp" id="">
+                <label for="">Category</label>
+                <select name="" id="">
+                    <select name="" id="">
+                        <option value="Expenses">Expense</option>
+                    </select>
+                    <!-- <select name="" id="">
+                        <option value="Income">Income</option>
+                    </select> -->
+                </select>
             </div>
             <div>
-                <label for="">Income</label>
-                <input type="text" name="inc" id="">
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date">
             </div>
             <div>
-                <label for="">Date</label>
-                <input type="date" name="date" id="">
+                <label for="desc">Description</label>
+                <input type="text" name="desc" id="desc">
             </div>
             <div>
-                <label for="">Description</label>
-                <input type="text" name="desc" id="">
+                <label for="amt">Enter Amount</label>
+                <input type="number" name="amt" id="amt">
             </div>
-            <div>
-                <label for="">Enter Amount</label>
-                <input type="number" name="amt" id="">
-            </div>
-            <button type="submit">Add</button>
+            <!-- <button type="submit">Add</button> -->
         </form>
     </div>
     <br><br><br>
