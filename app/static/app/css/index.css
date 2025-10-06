@@ -191,18 +191,55 @@ main{
     }
 }
 
+/* Transactions Page */
+
 .transaction-sec{
     width: 1000px;
     margin: 0 auto;
-}
-.spent-sec{
-    visibility: hidden;
     border: 2px solid;
-    height: 100px;
+    height: 100vh;
+    padding: 80px 0 0 50px;
+}
+#transactionBtn{
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0.2px 0.2px 2px 0.2px var(--box-shadow);
+    background-color: var(--background-color);
+    text-align: center;
+    align-content: center;
+    font-weight: 550;
+    opacity: 0.8;
+    color: var(--color);
+    font-size: 16px;
+}
+#transactionBtn:hover{
+    transition: all 0.2s ease-in;
+    box-shadow: 2px 2px 8px var(--box-shadow);
 }
 
+.spent-sec{
+    /* visibility: hidden; */
+    border: 2px solid;
+    height: 150px;
+}
 .visible{
     visibility: visible;
     border: 2px solid;
-    height: 100px;
+    height: 150px;
 }
+.spent-sec>form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.spent-sec>form div{
+    border: 2px solid;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
