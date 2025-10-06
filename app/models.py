@@ -8,13 +8,13 @@ class Account(models.Model):
         return str(self.cash)
     
 class Expense(models.Model):
-    expense=models.CharField(max_length=32)
+    expense_type=models.CharField(max_length=32)
     date=models.DateField()
     note=models.TextField(max_length=100)
     amount=models.DecimalField(max_digits=9,decimal_places=2)
 
 class Income(models.Model):
-    income=models.CharField(max_length=32)
+    income_type=models.CharField(max_length=32)
     date=models.DateField()
     note=models.TextField(max_length=100)
     amount=models.DecimalField(max_digits=9,decimal_places=2)
