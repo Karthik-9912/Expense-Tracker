@@ -1,81 +1,85 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'app/css/index.css' %}" />
+  </head>
+  <body>
     <section class="transaction-sec">
-    
-    <button id="transactionBtn">Add Transaction</button>
+      <button id="transactionBtn">Add Transaction</button>
 
-    <div class="spent-sec">
+      <div class="spent-sec">
         <form action="" method="post">
-            {% csrf_token %}
-            <div>
-                <label for="">Category</label>
-                <select name="" id="">
-                    <select name="" id="">
-                        <option value="Expenses">Expense</option>
-                    </select>
-                    <!-- <select name="" id="">
-                        <option value="Income">Income</option>
-                    </select> -->
-                </select>
-            </div>
-            <div>
-                <label for="date">Date</label>
-                <input type="date" name="date" id="date">
-            </div>
-            <div>
-                <label for="desc">Description</label>
-                <input type="text" name="desc" id="desc">
-            </div>
-            <div>
-                <label for="amt">Enter Amount</label>
-                <input type="number" name="amt" id="amt">
-            </div>
-            <!-- <button type="submit">Add</button> -->
+          {% csrf_token %}
+          <div>
+            <select name="category" id="category">
+                <option value="">--Select Category--</option>
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" />
+          </div>
+          <div>
+            <label for="desc">Description</label>
+            <input type="text" name="desc" id="desc" />
+          </div>
+          <div>
+            <label for="amt">Enter Amount</label>
+            <input type="number" name="amt" id="amt" />
+          </div>
+          <button type="submit">Add</button>
         </form>
-    </div>
-    <br><br><br>
-    <p>{{data.cash}}</p>
+      </div>
+      <br /><br /><br />
+      <p>{{data.cash}}</p>
+      <p>{{msg}}</p>
 
-    <h2>Incomes</h2>
-        {% for i in data1 %}
+      <h2>Incomes</h2>
+      {% for i in data1 %}
 
-            <a href="{% url 'delete1' data.id%}">
-            <h4> {{i.id}}. {{i.income}}</h4>
-            <p>{{i.date}}</p>
-            <p>{{i.note}}</p>
-            <p>{{i.amount}}</p>
-            </a>
+      <form action="{% url 'delete1' i.id %}" method="post">
+        {% csrf_token %}
+        
+        <h4>{{i.income}}</h4>
+        <p>{{i.date}}</p>
+        <p>{{i.note}}</p>
+        <p>{{i.amount}}</p>
+        <button type="submit" onclick="return confirm('Are you sure You want delete this?');" >Delete
+        </button>
+      
+      </form>
 
-        {% empty %}
-            <p>No income records yet.</p>
-        {% endfor %}
-    
-    <br><br>
-    
-        <h2>Expenses</h2>
-        {% for e in data2 %}
-            <a href="{% url 'delete2' data.id %}">
-                <h4>{{e.id}}.{{e.expense}}</h4>
-            <p>{{e.date}}</p>
-            <p>{{e.note}}</p>
-            <p>{{e.amount}}</p>
-            </a>
+      {% empty %}
+      <p>No income records yet.</p>
+      {% endfor %}
 
-        {% empty %}
-            <p>No Expenses recorded yet </p>
-        {% endfor %}
-    
+      <br /><br />
+
+      <h2>Expenses</h2>
+      {% for e in data2 %}
+      <form action="{% url 'delete2' e.id %}" method="post">
+        {% csrf_token %}
+        
+        <h4>{{e.expense}}</h4>
+        <p>{{e.date}}</p>
+        <p>{{e.note}}</p>
+        <p>{{e.amount}}</p>
+        <button type="submit" onclick="return confirm('Are you sure you want to delete?');">Delete
+      </button>
+      </form>
+
+      {% empty %}
+      <p>No Expenses recorded yet</p>
+      {% endfor %}
     </section>
 
     <script src="{% static 'app/js/transaction.js' %}"></script>
-</body>
+  </body>
 </html>
