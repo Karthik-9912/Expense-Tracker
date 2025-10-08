@@ -223,12 +223,13 @@ main{
 .spent-sec{
     /* visibility: hidden; */
     border: 2px solid;
-    height: 150px;
+    height: 200px;
+    padding-top: 40px;
 }
 .visible{
     visibility: visible;
     border: 2px solid;
-    height: 150px;
+    height: 200px;
 }
 .spent-sec>form{
     display: flex;
@@ -236,9 +237,65 @@ main{
     align-items: center;
 }
 .spent-sec>form div{
-    border: 2px solid;
+    /* border: 2px solid; */
     display: flex;
     flex-direction: column;
+    width: 200px;
+}
+
+#category,
+#date,
+#desc,
+#amt{
+    height: 35px;
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 15px;
+    text-align: start;
+    padding: 0 10px;
+}
+#category{
+    text-align: center;
+}
+#amt{
+    text-align: end;
+    padding-right: 15px;
+    
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+}
+#category option{
+    background-color: var(--background-color);
+    color: var(--color);
+}
+
+form{
+    position: relative;
+}
+form label{
+    font-size: small;
+    font-weight: lighter;
+    opacity: 0.8;
+    padding: 4px;
+}
+.form-btn{
+    width: 100px;
+    height: 35px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: transparent;
+    position: absolute;
+    top: 100px;
+    right: 25px;
+    font-weight: bold;
+    box-shadow: 1px 1px 4px var(--box-shadow);
+}
+.form-btn:hover{
+    background-color: var(--color);
+    color: white;
 }
 
 
