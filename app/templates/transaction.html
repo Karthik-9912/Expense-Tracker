@@ -14,31 +14,31 @@
       <div class="spent-sec">
         <form action="" method="post">
           {% csrf_token %}
-          <div>
+          <div class="category-sec">
+            <label for="category">Category</label>
             <select name="category" id="category">
-                <option value="">--Select Category--</option>
-                <option value="expense">Expense</option>
-                <option value="income">Income</option>
+                <option value="" disabled selected>--Select Category--</option>
+                <option value="expense">➖Expense</option>
+                <option value="income">➕Income</option>
             </select>
           </div>
           
-          <div>
+          <div class="date-sec">
             <label for="date">Date</label>
             <input type="date" name="date" id="date" />
           </div>
-          <div>
+          <div class="desc-sec">
             <label for="desc">Description</label>
-            <input type="text" name="desc" id="desc" />
+            <input type="text" name="desc" id="desc" placeholder="describe your bill" />
           </div>
-          <div>
+          <div class="amount-sec">
             <label for="amt">Enter Amount</label>
-            <input type="number" name="amt" id="amt" />
+            <input type="number" name="amt" id="amt" placeholder="0.00" />
           </div>
-          <button type="submit">Add</button>
+          <button type="submit" class="form-btn">Add</button>
         </form>
       </div>
       <br /><br /><br />
-      <p>{{data.cash}}</p>
       <p>{{msg}}</p>
 
       <h2>Incomes</h2>
