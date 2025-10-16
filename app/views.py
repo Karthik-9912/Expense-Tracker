@@ -3,6 +3,7 @@ from .models import Account,Income,Expense
 from decimal import Decimal
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
+from django.db.models import Sum
 
 # Create your views here.
 def index(request):
@@ -14,8 +15,7 @@ def index(request):
     }
     return render(request,'index.html',context)
 
-def chart(request):
-    return render(request,'chart.html')
+
 
 def budget(request):
     return render(request,'budget.html')
@@ -93,3 +93,23 @@ def delete_exp(request,d2):
     item.delete()
     return redirect('transaction')
 
+
+def chart(request):
+    return render(request,'chart.html')
+
+def chart_data(request):
+    expenses=Expense.objects.values('expense_type').annotate(total=Sum('amount'))
+    incomes=Income.objects.values('income_type').annotate(total=Sum('amount'))
+
+    expense_data={
+        "labels":[e['expense_type']for e in expenses],
+        "data":[float(e['total'])for e in expenses]
+    }
+
+    income_data={
+        "labels":[i['income_type']for i in incomes],
+        "data":[float(i['total'])for i in incomes]
+    }
+
+
+    return JsonResponse({'expense_data': expense_data, 'income_data': income_data})
