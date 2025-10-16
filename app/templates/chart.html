@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body{
+           background-image: linear-gradient(to bottom,#f8fafc,#f3e8ff,#f3e8ff,#f8fafc);
+        }
+        .charts{
+            display: flex;
+
+        }
+        #expenseChart{
+            
+            max-width: 600px;
+            max-height: 400px;
+            margin: 20px;
+        }
+        #incomeChart{
+            
+            max-width: 600px;
+            max-height: 400px;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>CHArt Page</h1>
+    <h1>Expense & Income Charts</h1>
+
+    <div class="charts">
+        <div style="width: 50%;">
+            <h2>Expense Distribution</h2>
+        <canvas id="expenseChart"></canvas>
+        </div>
+
+        <div style="width: 50%;">
+            <h2>Income Overview</h2>
+        <canvas id="incomeChart"></canvas>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'app/js/chart.js' %}"></script>
 </body>
 </html>
