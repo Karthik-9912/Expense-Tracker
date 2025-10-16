@@ -26,6 +26,7 @@ def transaction(request):
     msg=""
     if not data:
         data=Account.objects.create(cash=0.00)
+        
     if request.method=="POST":
         amt=request.POST.get('amt')
         category=request.POST.get('category')
@@ -51,10 +52,23 @@ def transaction(request):
                 msg="Please Select Category"
     data1=Income.objects.all()
     data2=Expense.objects.all()
+
+    if not data1.exists():
+        tot_income=0.00
+    else:
+        tot_income=sum(i.amount for i in data1)
+
+    if not data2.exists():
+        tot_expense=0.00
+    else:
+        tot_expense=sum(e.amount for e in data2)
+
     context={
         'data':data,
         'data1':data1,
         'data2':data2,
+        'tot_income':tot_income,
+        'tot_expense':tot_expense,
         'msg':msg,
     }
     return render(request,'transaction.html',context)
