@@ -4,6 +4,7 @@ from . import views
 urlpatterns=[
     path('',views.index,name='dashboard'),
     path('chart/',views.chart,name='chart'),
+    path('chart-data/',views.chart_data,name='chart_data'),
     path('budget/',views.budget,name="budget"),
     path('transaction/',views.transaction,name="transaction"),
     path('delete/income/<int:d1>',views.delete_inc,name="delete1"),
