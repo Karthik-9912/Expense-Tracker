@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'Expense_Tracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'ExpenseTracker',
+        'NAME':'ExpenseManagement',
         'USER':'postgres',
         'PASSWORD':'root',
         'PORT':5432,
