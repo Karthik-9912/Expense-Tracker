@@ -110,6 +110,4 @@ def chart_data(request):
         "labels":[i['income_type']for i in incomes],
         "data":[float(i['total'])for i in incomes]
     }
-
-
     return JsonResponse({'expense_data': expense_data, 'income_data': income_data})
