@@ -25,17 +25,24 @@
         </div>
 
         <div id="profile">
-          <img
-            src="{% static 'images/karthik-ai.jpg' %}"
-            alt="profile-img"
-            height="40px"
-          />
-          <h5>Profile Name</h5>
+          <span class="material-symbols-outlined"> account_circle </span>
+          <div class="profile-container">
+            <div class="profile-items">
+              <div class="profile-name">
+                {{ user.username }}
+                <span class="arrow-dropdown material-symbols-outlined">
+                  arrow_drop_down
+                </span>
+              </div>
+              <div>
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button class="logout-btn" type="submit">Logout</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <form action="{% url 'logout' %}" method="post">
-          {% csrf_token %}
-          <button type="submit">Logout</button>
-        </form>
       </nav>
     </header>
     <!-- main -->
