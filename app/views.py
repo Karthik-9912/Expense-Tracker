@@ -1,102 +1,124 @@
-from django.shortcuts import render,redirect,get_object_or_404
-from .models import Account,Income,Expense
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Account, Income, Expense
 from decimal import Decimal
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='login')
 def index(request):
-    data=Account.objects.first()
-    if not data:
-        Account.objects.create(cash=0.00)
-    context={
-        'data':data
+    # ensure an Account exists for the logged-in user
+    data, created = Account.objects.get_or_create(
+        user=request.user,
+        defaults={'cash': Decimal('0.00')},
+    )
+    context = {
+        'data': data
     }
-    return render(request,'index.html',context)
+    return render(request, 'index.html', context)
 
 
-
+@login_required(login_url='login')
 def budget(request):
     return render(request,'budget.html')
 
 
+@login_required(login_url='login')
 def transaction(request):
-    data=Account.objects.first()
-    msg=""
-    if not data:
-        data=Account.objects.create(cash=0.00)
-        
-    if request.method=="POST":
-        amt=request.POST.get('amt')
-        category=request.POST.get('category')
-        date=request.POST.get('date')
-        desc=request.POST.get('desc')
-        
+    # get or create per-user account
+    data, created = Account.objects.get_or_create(
+        user=request.user,
+        defaults={'cash': Decimal('0.00')},
+    )
+    msg = ""
+
+    if request.method == "POST":
+        amt = request.POST.get('amt')
+        category = request.POST.get('category')
+        date = request.POST.get('date')
+        desc = request.POST.get('desc')
+
         if data and amt:
-            amt=Decimal(amt)
-            if category=="income":
-                data.cash+=amt
+            amt = Decimal(amt)
+            if category == "income":
+                data.cash += amt
                 data.save()
                 Income.objects.create(
-                    income_type=category,date=date,note=desc,amount=amt
+                    user=request.user,
+                    income_type=category,
+                    date=date,
+                    note=desc,
+                    amount=amt,
                 )
-                
-            elif category=="expense":
-                data.cash-=amt
+
+            elif category == "expense":
+                data.cash -= amt
                 data.save()
                 Expense.objects.create(
-                    expense_type=category,date=date,note=desc,amount=amt
+                    user=request.user,
+                    expense_type=category,
+                    date=date,
+                    note=desc,
+                    amount=amt,
                 )
             else:
-                msg="Please Select Category"
-    data1=Income.objects.all()
-    data2=Expense.objects.all()
+                msg = "Please Select Category"
+
+    # only show incomes/expenses for the current user
+    data1 = Income.objects.filter(user=request.user)
+    data2 = Expense.objects.filter(user=request.user)
 
     if not data1.exists():
-        tot_income=0.00
+        tot_income = Decimal('0.00')
     else:
-        tot_income=sum(i.amount for i in data1)
+        tot_income = sum(i.amount for i in data1)
 
     if not data2.exists():
-        tot_expense=0.00
+        tot_expense = Decimal('0.00')
     else:
-        tot_expense=sum(e.amount for e in data2)
+        tot_expense = sum(e.amount for e in data2)
 
-    context={
-        'data':data,
-        'data1':data1,
-        'data2':data2,
-        'tot_income':tot_income,
-        'tot_expense':tot_expense,
-        'msg':msg,
+    context = {
+        'data': data,
+        'data1': data1,
+        'data2': data2,
+        'tot_income': tot_income,
+        'tot_expense': tot_expense,
+        'msg': msg,
     }
-    return render(request,'transaction.html',context)
+    return render(request, 'transaction.html', context)
 
 @require_POST
-def delete_inc(request,d1):
-    item=get_object_or_404(Income,id=d1)
-    data=Account.objects.first()
+@login_required
+def delete_inc(request, d1):
+    # only allow deleting incomes that belong to the user
+    item = get_object_or_404(Income, id=d1, user=request.user)
+    data = Account.objects.filter(user=request.user).first()
     if data:
-        data.cash-=Decimal(item.amount)
+        data.cash -= Decimal(item.amount)
         data.save()
     item.delete()
     return redirect('transaction')
 
 @require_POST
-def delete_exp(request,d2):
-    item=get_object_or_404(Expense,id=d2)
-    data=Account.objects.first()
+@login_required
+def delete_exp(request, d2):
+    # only allow deleting expenses that belong to the user
+    item = get_object_or_404(Expense, id=d2, user=request.user)
+    data = Account.objects.filter(user=request.user).first()
     if data:
-        data.cash+=Decimal(item.amount)
+        data.cash += Decimal(item.amount)
         data.save()
     item.delete()
     return redirect('transaction')
 
-
+@login_required(login_url='login')
 def chart(request):
     return render(request,'chart.html')
 
+@login_required(login_url='login')
 def chart_data(request):
     expenses=Expense.objects.values('expense_type').annotate(total=Sum('amount'))
     incomes=Income.objects.values('income_type').annotate(total=Sum('amount'))
