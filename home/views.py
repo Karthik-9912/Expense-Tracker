@@ -2,6 +2,7 @@ from django.shortcuts import render , redirect
 from .forms import RegisterForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 def home(request):
@@ -21,6 +22,7 @@ def register(request):
         'msg':msg
     }
     return render(request,"register.html",context)
+
 
 def log_in(request):
     msg=""
@@ -44,3 +46,8 @@ def log_in(request):
             'msg':msg
         }
     return render(request,'login.html',context)
+
+@require_POST
+def log_out(request):
+    logout(request)
+    return redirect('login')
