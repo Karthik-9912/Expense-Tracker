@@ -32,6 +32,10 @@
           />
           <h5>Profile Name</h5>
         </div>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Logout</button>
+        </form>
       </nav>
     </header>
     <!-- main -->
