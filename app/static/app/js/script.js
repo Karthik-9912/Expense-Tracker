@@ -5,5 +5,10 @@ wallet.addEventListener("click",(e)=>{
     window.location.href=transactionUrl;
 });
 
+let profileClick = document.querySelector("#profile")
 
-// transaction page
+profileClick.addEventListener("click",()=>{
+    document.querySelector(".logout-btn").classList.toggle("show");
+    
+})
+
