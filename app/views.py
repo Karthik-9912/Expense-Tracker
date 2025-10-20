@@ -5,8 +5,10 @@ from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 
 # Create your views here.
+@never_cache
 @login_required(login_url='login')
 def index(request):
     # ensure an Account exists for the logged-in user
@@ -20,11 +22,13 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+@never_cache
 @login_required(login_url='login')
 def budget(request):
     return render(request,'budget.html')
 
 
+@never_cache
 @login_required(login_url='login')
 def transaction(request):
     # get or create per-user account
@@ -90,6 +94,7 @@ def transaction(request):
     }
     return render(request, 'transaction.html', context)
 
+@never_cache
 @require_POST
 @login_required
 def delete_inc(request, d1):
@@ -102,6 +107,7 @@ def delete_inc(request, d1):
     item.delete()
     return redirect('transaction')
 
+@never_cache
 @require_POST
 @login_required
 def delete_exp(request, d2):
@@ -114,10 +120,12 @@ def delete_exp(request, d2):
     item.delete()
     return redirect('transaction')
 
+@never_cache
 @login_required(login_url='login')
 def chart(request):
     return render(request,'chart.html')
 
+@never_cache
 @login_required(login_url='login')
 def chart_data(request):
     expenses=Expense.objects.values('expense_type').annotate(total=Sum('amount'))
