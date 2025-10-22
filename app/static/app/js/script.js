@@ -12,3 +12,18 @@ profileClick.addEventListener("click",()=>{
     
 })
 
+let addNewBtn = document.querySelector('.new-wallet');
+let premiumFeature = document.querySelector(".premium-container");
+
+addNewBtn.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    premiumFeature.style.display="block";
+})
+
+let removeFeature = document.getElementById("rm-btn");
+
+removeFeature.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    premiumFeature.style.display="none";
+})
+
