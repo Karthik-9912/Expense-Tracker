@@ -1,21 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'app/css/index.css' %}" />
     <style>
         body{
            background-image: linear-gradient(to bottom,#f8fafc,#f3e8ff,#f3e8ff,#f8fafc);
         }
+        #budget-head{
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .budget{
+            background-color: #e9d5ff;
+            width: 400px;
+            height: 200px;
+            margin: 0 auto;
+            align-content: center;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .soon{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h1>BUdget Page</h1>
 
-    <div>
-        <p>Take control of your expenses and save more money with budgets!</p>
-        <button>Create a New Budget</button>
+     <header>
+      <nav>
+        <div id="logo"><img class="logo-img" src="{% static 'images/logo-name-white.png' %}" alt="app-logo"></div>
+        <div class="elements">
+          <ul>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'chart' %}">Chart</a></li>
+            <li><a href="{% url 'budget' %}">Budgets</a></li>
+          </ul>
+        </div>
+
+        <div id="profile">
+          <span class="material-symbols-outlined"> account_circle </span>
+          <div class="profile-container">
+            <div class="profile-items">
+              <div class="profile-name">
+                {{ user.username }}
+                <span class="arrow-dropdown material-symbols-outlined">
+                  arrow_drop_down
+                </span>
+              </div>
+              <div>
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button class="logout-btn" type="submit">Logout</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+    <h1 id="budget-head">BUDGET PAGE</h1>
+
+    <div class="budget">
+        <div class="soon">Comming Soon</div>
     </div>
 </body>
 </html>

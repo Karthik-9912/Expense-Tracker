@@ -6,30 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chart</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'app/css/index.css' %}" />
+
     <style>
         body{
            background-image: linear-gradient(to bottom,#f8fafc,#f3e8ff,#f3e8ff,#f8fafc);
         }
+        #sec1{
+            width: 1000px;
+            margin: 0 auto;
+        }
         .charts{
             display: flex;
-
+            
+            gap: 30px;
+            h2{
+                color: #3b0764;
+                padding: 20px 0;
+            }
         }
         #expenseChart{
-            
-            max-width: 600px;
-            max-height: 400px;
-            margin: 20px;
+            max-width: 500px;
+            max-height: 300px;
         }
         #incomeChart{
-            
-            max-width: 600px;
-            max-height: 400px;
-            margin: 20px;
+            max-width: 500px;
+            max-height: 350px;
         }
+        .chart-head{
+            margin: 20px 0;
+            color: #3b0764;
+
+        }
+
     </style>
 </head>
 <body>
-    <h1>Expense & Income Charts</h1>
+     <header>
+      <nav>
+        <div id="logo"><img class="logo-img" src="{% static 'images/logo-name-white.png' %}" alt="app-logo"></div>
+        <div class="elements">
+          <ul>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'chart' %}">Chart</a></li>
+            <li><a href="{% url 'budget' %}">Budgets</a></li>
+          </ul>
+        </div>
+
+        <div id="profile">
+          <span class="material-symbols-outlined"> account_circle </span>
+          <div class="profile-container">
+            <div class="profile-items">
+              <div class="profile-name">
+                {{ user.username }}
+                <span class="arrow-dropdown material-symbols-outlined">
+                  arrow_drop_down
+                </span>
+              </div>
+              <div>
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button class="logout-btn" type="submit">Logout</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section id="sec1">
+    <h1 class="chart-head">Expense & Income Charts</h1>
 
     <div class="charts">
         <div style="width: 50%;">
@@ -43,7 +94,7 @@
         </div>
     </div>
 
-
+</section>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{% static 'app/js/chart.js' %}"></script>

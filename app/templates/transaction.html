@@ -11,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
   </head>
   <body>
+
+
+
+
     <section class="transaction-sec">
       <button id="transactionBtn">Add Transaction</button>
 
@@ -19,8 +23,8 @@
           {% csrf_token %}
           <div class="category-sec">
             <label for="category">Category</label>
-            <select name="category" id="category">
-              <option value="" disabled selected>--Select Category--</option>
+            <select name="category" id="category" required>
+              <option value="" disabled selected >--Select Category--</option>
               <option value="expense">➖Expense</option>
               <option value="income">➕Income</option>
             </select>
@@ -28,7 +32,7 @@
 
           <div class="date-sec">
             <label for="date">Date</label>
-            <input type="date" name="date" id="date" />
+            <input type="date" name="date" id="date" required />
           </div>
           <div class="desc-sec">
             <label for="desc">Description</label>
@@ -37,11 +41,12 @@
               name="desc"
               id="desc"
               placeholder="describe your bill"
+              
             />
           </div>
           <div class="amount-sec">
             <label for="amt">Enter Amount</label>
-            <input type="number" name="amt" id="amt" placeholder="0.00" />
+            <input type="number" name="amt" id="amt" placeholder="0.00" required />
           </div>
           <button type="submit" class="form-btn">Add</button>
         </form>

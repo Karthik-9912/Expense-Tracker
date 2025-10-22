@@ -15,7 +15,7 @@
     <!-- header -->
     <header>
       <nav>
-        <div id="logo">Expense logo</div>
+        <div id="logo"><img class="logo-img" src="{% static 'images/logo-name-white.png' %}" alt="app-logo"></div>
         <div class="elements">
           <ul>
             <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
@@ -66,6 +66,14 @@
         <div class="new-wallet">
           <div class="add-new">Add New Wallet</div>
           <div class="connect-new">Connect Bank Account</div>
+        </div>
+        <div class="premium-container">
+          <div class="premium-child-container">
+            <div class="premium-head">Oops... Premium Feature</div>
+            <p>To create more than one wallet you need to upgrade to premium</p>
+            <button>Coming Soon...</button>
+            <em id="rm-btn">Not Interested</em>
+          </div>
         </div>
       </div>
       <div class="overview">

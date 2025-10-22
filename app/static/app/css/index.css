@@ -48,6 +48,10 @@ nav ul{
     }
 }
 
+.logo-img{
+    height: 60px; 
+}
+
 nav ul li:first-child>a{
     padding: 10px 18px;
 }
@@ -73,7 +77,7 @@ nav #profile{
     gap: 10px;
     position: relative;
     cursor: pointer;
-    
+    color: #3b0764;
 }
 
 .profile-items{
@@ -92,7 +96,7 @@ nav #profile{
     position: absolute;
     top: -2px;
     right: -23px;
-    color: black;
+    color: #3b0764;
     font-size: 28px;
 }
 .logout-btn{
