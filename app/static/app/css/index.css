@@ -265,28 +265,31 @@ main{
 }
 
 .spent-sec{
-    visibility: hidden;
-    border: none;
+    display: none;
     height: 200px;
-    padding-top: 40px;
+    border: none;
     background-color: var(--background-color);
-    border-radius: 5px;
+    border-radius: 10px;
+    
 }
 .visible{
-    visibility: visible;
-    /* border: 2px solid; */
+    display: block;
     height: 200px;
+    margin-top: 10px;
+    padding-top: 20px;
+    transition: all 1s ease-in;
 }
 .spent-sec>form{
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: center; 
 }
+
 .spent-sec>form div{
-    /* border: 2px solid; */
     display: flex;
     flex-direction: column;
     width: 200px;
+    
 }
 
 #category,
@@ -341,9 +344,94 @@ form label{
 }
 .form-btn:hover{
     background-color: var(--color);
+    cursor: pointer;
     color: white;
 }
 
+.income-data-container{
+    background-color: rgba(0, 0, 0, 0.055);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 0 10px;
+    height: 50px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    h4{
+        text-transform: capitalize;
+    }
+    p{
+        width: 150px;
+        
+    }
+}
+.income-data-container:hover{
+    background-color: #e9d5ff;
+    
+    transform: scale(1.01);
+    transition: transform 0.3s ease
+}
+.inc-dlt-btn{
+    cursor: pointer;
+    margin-left: 300px;
+    width: 70px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #3b0764;
+    border: none;
+    font-weight: bold;
+    color: var(--background-color);
+}
+.inc-dlt-btn:hover{
+    box-shadow: 2px 2px 4px rgb(23, 45, 243);
+    transition: all 0.3s ease-in;
+}
 
+.expense-data-cotainer{
+     background-color: rgba(0, 0, 0, 0.055);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 0 10px;
+    height: 50px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    h4{
+        text-transform: capitalize;
+    }
+    p{
+        width: 150px;
+        
+    }
+}
+.expense-data-cotainer:hover{
+    background-color: #e9d5ff;
+    transform: scale(1.01);
+    transition: transform 0.3s ease;
+}
+.exp-dlt-btn{
+    cursor: pointer;
+    margin-left: 300px;
+    width: 70px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #3b0764;
+    border: none;
+    font-weight: bold;
+    color: var(--background-color);
+}
+.exp-dlt-btn:hover{
+    box-shadow: 2px 2px 4px rgb(23, 45, 243);
+    transition: all 0.3s ease-in;
+}
+
+.arrow-upward-alt{
+    color: green;
+}
+.arrow-downward-alt{
+    color: red;
+}
 
 /* Budget Page */
