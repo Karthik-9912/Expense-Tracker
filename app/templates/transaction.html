@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'app/css/index.css' %}" />
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
   </head>
   <body>
     <section class="transaction-sec">
@@ -17,19 +20,24 @@
           <div class="category-sec">
             <label for="category">Category</label>
             <select name="category" id="category">
-                <option value="" disabled selected>--Select Category--</option>
-                <option value="expense">➖Expense</option>
-                <option value="income">➕Income</option>
+              <option value="" disabled selected>--Select Category--</option>
+              <option value="expense">➖Expense</option>
+              <option value="income">➕Income</option>
             </select>
           </div>
-          
+
           <div class="date-sec">
             <label for="date">Date</label>
             <input type="date" name="date" id="date" />
           </div>
           <div class="desc-sec">
             <label for="desc">Description</label>
-            <input type="text" name="desc" id="desc" placeholder="describe your bill" />
+            <input
+              type="text"
+              name="desc"
+              id="desc"
+              placeholder="describe your bill"
+            />
           </div>
           <div class="amount-sec">
             <label for="amt">Enter Amount</label>
@@ -43,17 +51,27 @@
 
       <h2>Incomes</h2>
       {% for i in data1 %}
-
       <form action="{% url 'delete1' i.id %}" method="post">
         {% csrf_token %}
-        
-        <h4>{{i.income}}</h4>
-        <p>{{i.date}}</p>
-        <p>{{i.note}}</p>
-        <p>{{i.amount}}</p>
-        <button type="submit" onclick="return confirm('Are you sure You want delete this?');" >Delete
-        </button>
-      
+
+        <div class="income-data-container">
+          <!-- <h4>{{i.income_type}}</h4> -->
+
+          <span class="arrow-upward-alt material-symbols-outlined">
+            arrow_upward_alt
+          </span>
+
+          <p>Date: {{i.date}}</p>
+          <p>Note: {{i.note}}</p>
+          <p>Amount: {{i.amount}}</p>
+          <button
+            class="inc-dlt-btn"
+            type="submit"
+            onclick="return confirm('Are you sure You want delete this?');"
+          >
+            Delete
+          </button>
+        </div>
       </form>
 
       {% empty %}
@@ -67,12 +85,20 @@
       <form action="{% url 'delete2' e.id %}" method="post">
         {% csrf_token %}
         
-        <h4>{{e.expense}}</h4>
-        <p>{{e.date}}</p>
-        <p>{{e.note}}</p>
-        <p>{{e.amount}}</p>
-        <button type="submit" onclick="return confirm('Are you sure you want to delete?');">Delete
-      </button>
+        <div class="expense-data-cotainer">
+          <!-- <h4>{{e.expense_type}}</h4> -->
+          <span class="arrow-downward-alt material-symbols-outlined"> arrow_downward_alt </span>
+          <p>Date: {{e.date}}</p>
+          <p>Note: {{e.note}}</p>
+          <p>Amount: {{e.amount}}</p>
+          <button
+            class="exp-dlt-btn"
+            type="submit"
+            onclick="return confirm('Are you sure you want to delete?');"
+          >
+            Delete
+          </button>
+        </div>
       </form>
 
       {% empty %}
