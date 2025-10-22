@@ -22,6 +22,19 @@ function fetchChartData(){
                 }]
             }
         });
+
+        // income piechart
+        // const ctx1_1 = document.getElementById('incomeChart').getContext('2d');
+        // incomeChart=new Chart(ctx1_1,{
+        //     type:'pie',
+        //     data:{
+        //         labels:incomeData.labels,
+        //         datasets:[{
+        //             data:incomeData.data,
+        //             backgroundColor:['#FF6384', '#36A2EB', '#FFCE56', '#2ECC71', '#9B59B6']
+        //         }]
+        //     }
+        // });
     
 
     // Income BarChart
