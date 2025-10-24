@@ -11,10 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
   </head>
   <body>
-
-
-
-
+    
     <section class="transaction-sec">
       <button id="transactionBtn">Add Transaction</button>
 
@@ -80,7 +77,7 @@
       </form>
 
       {% empty %}
-      <p>No income records yet.</p>
+      <p class="inc-records">No Income records yet.</p>
       {% endfor %}
 
       <br /><br />
@@ -107,7 +104,7 @@
       </form>
 
       {% empty %}
-      <p>No Expenses recorded yet</p>
+      <p class="exp-records">No Expense records yet.</p>
       {% endfor %}
     </section>
 
