@@ -1,6 +1,9 @@
 let expenseChart,incomeChart
+let expenseColors=[];
+
 
 function fetchChartData(){
+
     fetch('/app/chart-data/')
     .then(response => response.json())
     .then(data=>{
@@ -10,6 +13,11 @@ function fetchChartData(){
         if(expenseChart) expenseChart.destroy();
         if(incomeChart) incomeChart.destroy();
 
+        // 
+        while(expenseColors.length<expenseData.data.length){
+            expenseColors.push(`hsl(${Math.floor(Math.random()*360)},70%,60%)`);
+        }
+
         // expense piechart
         const ctx1 = document.getElementById('expenseChart').getContext('2d');
         expenseChart=new Chart(ctx1,{
@@ -18,23 +26,10 @@ function fetchChartData(){
                 labels:expenseData.labels,
                 datasets:[{
                     data:expenseData.data,
-                    backgroundColor:['#FF6384', '#36A2EB', '#FFCE56', '#2ECC71', '#9B59B6']
+                    backgroundColor:expenseColors
                 }]
             }
         });
-
-        // income piechart
-        // const ctx1_1 = document.getElementById('incomeChart').getContext('2d');
-        // incomeChart=new Chart(ctx1_1,{
-        //     type:'pie',
-        //     data:{
-        //         labels:incomeData.labels,
-        //         datasets:[{
-        //             data:incomeData.data,
-        //             backgroundColor:['#FF6384', '#36A2EB', '#FFCE56', '#2ECC71', '#9B59B6']
-        //         }]
-        //     }
-        // });
     
 
     // Income BarChart
@@ -46,13 +41,17 @@ function fetchChartData(){
                 datasets: [{
                     label: 'Income',
                     data: incomeData.data,
-                    backgroundColor: '#36A2EB'
+                    backgroundColor: ["#1e1b4b","#ef4444","#84cc16","#06b6d4","#8b5cf6","#0ea5e9","#ec4899"]
                 }]
             },
             options: { scales: { y: { beginAtZero: true } } }
         });
     })
     .catch(err => console.error("Error fetching chart data:", err)); 
+
+
+    // Line Chart
+    
 }
 
 fetchChartData()
