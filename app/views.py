@@ -11,13 +11,31 @@ from django.views.decorators.cache import never_cache
 @never_cache
 @login_required(login_url='login')
 def index(request):
-    # ensure an Account exists for the logged-in user
     data, created = Account.objects.get_or_create(
         user=request.user,
         defaults={'cash': Decimal('0.00')},
     )
+
+    # only show incomes/expenses for the current user
+    data1 = Income.objects.filter(user=request.user)
+    data2 = Expense.objects.filter(user=request.user)
+
+    if not data1.exists():
+        tot_income = Decimal('0.00')
+    else:
+        tot_income = sum(i.amount for i in data1)
+
+    if not data2.exists():
+        tot_expense = Decimal('0.00')
+    else:
+        tot_expense = sum(e.amount for e in data2)
+
     context = {
-        'data': data
+        'data': data,
+        'data1': data1,
+        'data2': data2,
+        'tot_income': tot_income,
+        'tot_expense': tot_expense,
     }
     return render(request, 'index.html', context)
 
@@ -69,8 +87,7 @@ def transaction(request):
                 )
             else:
                 msg = "Please Select Category"
-
-    # only show incomes/expenses for the current user
+                
     data1 = Income.objects.filter(user=request.user)
     data2 = Expense.objects.filter(user=request.user)
 
@@ -90,7 +107,7 @@ def transaction(request):
         'data2': data2,
         'tot_income': tot_income,
         'tot_expense': tot_expense,
-        'msg': msg,
+        'msg':msg
     }
     return render(request, 'transaction.html', context)
 
@@ -128,16 +145,16 @@ def chart(request):
 @never_cache
 @login_required(login_url='login')
 def chart_data(request):
-    expenses=Expense.objects.values('expense_type').annotate(total=Sum('amount'))
-    incomes=Income.objects.values('income_type').annotate(total=Sum('amount'))
+    expenses=Expense.objects.all()
+    incomes=Income.objects.all()
 
     expense_data={
-        "labels":[e['expense_type']for e in expenses],
-        "data":[float(e['total'])for e in expenses]
+        "labels":[f"{e.expense_type} - {e.note}" for e in expenses],
+        "data":[float(e.amount)for e in expenses]
     }
 
     income_data={
-        "labels":[i['income_type']for i in incomes],
-        "data":[float(i['total'])for i in incomes]
+        "labels":[f"{i.income_type} - {i.note}"for i in incomes],
+        "data":[float(i.amount)for i in incomes]
     }
     return JsonResponse({'expense_data': expense_data, 'income_data': income_data})
