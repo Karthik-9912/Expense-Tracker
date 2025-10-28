@@ -1,4 +1,4 @@
-let expenseChart,incomeChart
+let expenseChart,incomeChart,lineChart
 let expenseColors=[];
 
 
@@ -46,12 +46,61 @@ function fetchChartData(){
             },
             options: { scales: { y: { beginAtZero: true } } }
         });
+
+        // Line Chart
+
+const ctx3 = document.getElementById("lineChart").getContext("2d");
+
+lineChart = new Chart(ctx3, {
+  type: 'line',
+  data: {
+    labels: incomeData.labels, // Example: ['Jan', 'Feb', 'Mar', ...]
+    datasets: [
+      {
+        label: 'Income',
+        data: incomeData.data, // Example: [30, 40, 35, 50, 45, 60, 80, 100]
+        borderColor: '#3b82f6', // bright blue
+        backgroundColor: '#3b82f6',
+        borderWidth: 3,        // thicker, clean line
+        tension: 0.3,          // smooth curve
+        fill: false,           // no fill under line
+        pointRadius: 5,        // visible dots
+        pointHoverRadius: 7,   // hover effect
+        pointBackgroundColor: '#ffffff', // white center
+        pointBorderColor: '#3b82f6',     // blue outline
+        pointBorderWidth: 3,
+      },
+      {
+        label: 'Expense',
+        data: expenseData.data,
+        borderColor: '#ef4444',
+        backgroundColor: '#ef4444',
+        borderWidth: 3,
+        tension: 0.3,
+        fill: false,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: '#ffffff',
+        pointBorderColor: '#ef4444',
+        pointBorderWidth: 3,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      title: { display: true, text: 'Income vs Expense Trend' }
+    },
+    scales: {
+      y: { beginAtZero: true }
+    }
+  }
+});
+
+
     })
-    .catch(err => console.error("Error fetching chart data:", err)); 
-
-
-    // Line Chart
-    
+    .catch(err => console.error("Error fetching chart data:", err));  
 }
 
 fetchChartData()
