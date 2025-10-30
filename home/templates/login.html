@@ -1,62 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        *{
-            margin: 0px;
-        }
-        header{
-            background-color: cadetblue;
-            display: flex;
-            flex-direction: row;
-            height: 70px;
-        }
-        #logo{
-            font-size: 50px;
-            padding-top: 10px;
-        }
-        #appname{
-            font-size: 50px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-        form{
-            padding: 10px;
-            border: gray solid 2px;
-            text-align: center;
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 5px 5px 10px gray;
-        }
-        div{
-            margin-left: 580px;
-        }
-        input{
-            height: 20px;
-            padding: 5px;
-        }
-        label{
-            font-size: 20px;
-        }
-        button{
-            height: 30px;
-            width: 70px;
-            background-color: skyblue;
-            border: none;
-            font-size: 15px;
-            border-radius: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'home/login.css' %}">
 </head>
 <body>
     <header>
         <i id="logo" class="fa-solid fa-indian-rupee-sign"></i><p id="appname">Expense Tracker</p>
     </header>
     <br>
-    <div>
+    <!-- <div>
         <form action="" method="post">
         {% csrf_token %}
         <label for="">Username</label>
@@ -65,7 +24,30 @@
         <input type="password" placeholder="Enter password" name="password"> <br><br>
         <a href="{% url 'dashboard' %}"><button type="submit">Login</button></a>
         </form>
-        {{msg}}
-    </div>
+        
+    </div> -->
+    <div class="form-box">
+    <form class="form" method="post">
+        {% csrf_token %}
+       <p class="form-title">Sign in to your account</p>
+        <div class="input-container">
+          <input type="text" placeholder="Enter username" name="username">
+          <span>
+          </span>
+      </div>
+      <div class="input-container">
+          <input type="password" placeholder="Enter password" name="password">
+        </div>
+         <a style="text-decoration: none;" href="{% url 'dashboard' %}"><button type="submit" class="submit">
+        Sign in
+      </button></a>
+
+      <p class="signup-link">
+        No account?
+        <a href="{% url 'register' %}">Sign up</a>
+      </p>
+   </form>
+   <p class="msg">{{msg}}</p>
+   </div>
 </body>
 </html>
