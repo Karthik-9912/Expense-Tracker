@@ -10,22 +10,7 @@
 
 </head>
 <body>
-    <!-- <header>
-        <i id="logo" class="fa-solid fa-indian-rupee-sign"></i><p id="appname">Expense Tracker</p>
-    </header> -->
-    <br>
-   <!-- <div>
-        <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h1>Registration Form</h1>
-        <br>
-        {{form}}
-        <a href=""><button type="submit">Submit</button></a>
-        </form>
-        <br>
-        <a href="">Already have an acc?</a><a href="{% url 'login' %}"><button type="submit">Login</button></a>
-   </div>
-   {{msg}} -->
+    
 
 
    <div class="form-box">
@@ -33,14 +18,14 @@
     {% csrf_token %}
     <p class="title">Register </p>
     <p class="message">Signup now and get full access to our app. </p>
-        <!-- <div class="flex"> -->
+        
         <label>
             <input required placeholder="" type="text" class="input" id="id_{{form.username.name}}" name="{{form.username.name}}" value="{{form.username.value|default_if_none:''}}">
             <span>Username</span>
         </label>
 
         
-    <!-- </div>   -->
+   
             
     <label>
         <input required placeholder="" type="email" class="input" name="{{form.email.name}}" value="{{form.email.value|default_if_none:''}}">

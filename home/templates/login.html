@@ -11,21 +11,8 @@
     <link rel="stylesheet" href="{% static 'home/login.css' %}">
 </head>
 <body>
-    <header>
-        <i id="logo" class="fa-solid fa-indian-rupee-sign"></i><p id="appname">Expense Tracker</p>
-    </header>
+    
     <br>
-    <!-- <div>
-        <form action="" method="post">
-        {% csrf_token %}
-        <label for="">Username</label>
-        <input type="text" placeholder="Enter username" name="username"> <br><br>
-        <label for="">Password </label>
-        <input type="password" placeholder="Enter password" name="password"> <br><br>
-        <a href="{% url 'dashboard' %}"><button type="submit">Login</button></a>
-        </form>
-        
-    </div> -->
     <div class="form-box">
     <form class="form" method="post">
         {% csrf_token %}
