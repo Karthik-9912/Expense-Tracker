@@ -51,28 +51,40 @@ function fetchChartData(){
 
 const ctx3 = document.getElementById("lineChart").getContext("2d");
 
+const allLabels = [...new Set([...incomeData.labels, ...expenseData.labels])];
+
+function getAlignedData(labels, dataObj) {
+  return labels.map(label => {
+    const index = dataObj.labels.indexOf(label);
+    return index !== -1 ? dataObj.data[index] : 0;
+  });
+}
+
+const alignedIncomeData = getAlignedData(allLabels, incomeData);
+const alignedExpenseData = getAlignedData(allLabels, expenseData);
+
 lineChart = new Chart(ctx3, {
   type: 'line',
   data: {
-    labels: incomeData.labels, // Example: ['Jan', 'Feb', 'Mar', ...]
+    labels: allLabels,
     datasets: [
       {
         label: 'Income',
-        data: incomeData.data, // Example: [30, 40, 35, 50, 45, 60, 80, 100]
-        borderColor: '#3b82f6', // bright blue
+        data: alignedIncomeData,
+        borderColor: '#3b82f6',
         backgroundColor: '#3b82f6',
-        borderWidth: 3,        // thicker, clean line
-        tension: 0.3,          // smooth curve
-        fill: false,           // no fill under line
-        pointRadius: 5,        // visible dots
-        pointHoverRadius: 7,   // hover effect
-        pointBackgroundColor: '#ffffff', // white center
-        pointBorderColor: '#3b82f6',     // blue outline
+        borderWidth: 3,
+        tension: 0.3,
+        fill: false,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: '#ffffff',
+        pointBorderColor: '#3b82f6',
         pointBorderWidth: 3,
       },
       {
         label: 'Expense',
-        data: expenseData.data,
+        data: alignedExpenseData,
         borderColor: '#ef4444',
         backgroundColor: '#ef4444',
         borderWidth: 3,
@@ -90,7 +102,15 @@ lineChart = new Chart(ctx3, {
     responsive: true,
     plugins: {
       legend: { position: 'top' },
-      title: { display: true, text: 'Income vs Expense Trend' }
+      title: { display: true, text: 'Income vs Expense Trend' },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            const label = context.dataset.label || '';
+            return `${label}: ${context.raw.toLocaleString()}`;
+          }
+        }
+      }
     },
     scales: {
       y: { beginAtZero: true }
