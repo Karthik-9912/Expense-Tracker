@@ -14,8 +14,9 @@ def register(request):
     if request.method=="POST":
         form=RegisterForm(request.POST)
         if form.is_valid():
-            msg="Success!!"
+            msg="Account Created Successfully!!"
             form.save()
+            return redirect('login')
             
     context={
         'form':form,
@@ -41,7 +42,7 @@ def log_in(request):
             login(request,user)
             return redirect('dashboard')
         else:
-            msg = "Password is incorrect!!"            
+            msg = "Invalid Credentials"            
     context={
             'msg':msg
         }
@@ -50,4 +51,4 @@ def log_in(request):
 @require_POST
 def log_out(request):
     logout(request)
-    return redirect('login')
+    return redirect('home1')
